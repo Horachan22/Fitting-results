@@ -22,10 +22,10 @@ classdef elements
             obj.L       = L * 10^(-3);
             obj.r       = r;
             obj.C       = C * 10^(-9);
-            obj.f_RL_R  = @(V_R, t) obj.E * (1 - exp(-(obj.R * t)/obj.L));
-            obj.f_RL_L  = @(V_L, t) obj.E * exp(-(obj.R * t)/obj.C);
-            obj.f_RC_R  = @(V_R, t) obj.E * exp(-t/(obj.R * obj.C));
-            obj.f_RC_C  = @(V_C, t) obj.E * (1 - exp(-t/(obj.R * obj.C)));
+            obj.f_RL_R  = @(x, t) x(1) * (1 - exp(-(t / x(2))));
+            obj.f_RL_L  = @(x, t) x(1) * exp(-t * x(2));
+            obj.f_RC_R  = @(x, t) x(1) * exp(-t / x(2));
+            obj.f_RC_C  = @(x, t) x(1) * (1 - exp(-t / (x(2))));
             obj.f_RLC_R ;
             obj.f_RLC_L ;
             obj.f_RLC_C ;
